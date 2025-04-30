@@ -565,11 +565,7 @@ const Chatbot = () => {
     }
   }
 
-  const deleteAllSessions = () => {
-    setSessions([])
-    localStorage.removeItem("chatSessions")
-    createNewSession()
-  }
+
 
   const getCurrentSession = () => {
     return sessions.find((session) => session.id === currentSessionId)
@@ -637,7 +633,7 @@ const Chatbot = () => {
     setIsUploading(true)
     try {
       const result = await uploadcareClient.uploadFile(file)
-      const fileLink = result.cdnUrl
+      
 
       console.log("File uploaded successfully:", result)
 

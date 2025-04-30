@@ -14,7 +14,6 @@ import {
   Twitter,
   Facebook,
   Link,
-  Menu,
   ChevronLeft,
   AlertCircle,
   Check,
