@@ -56,7 +56,7 @@ export default function LandingPage() {
                             <BotIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                           </div>
                           <div className="bg-muted p-2 sm:p-3 rounded-lg text-xs sm:text-sm max-w-[80%]">
-                            Hello! I'm your educational counselor. How can I help you today?
+                            Hello! I&apos;m your educational counselor. How can I help you today?
                           </div>
                         </div>
                         <div className="flex items-start gap-2 justify-end">
@@ -170,8 +170,8 @@ export default function LandingPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs sm:text-sm text-muted-foreground">
-                    Provide personalized advice through natural conversations that adapt to each student's needs and
-                    questions.
+                    Provide personalized advice through natural conversations that adapt to each student&apos;s needs
+                    and questions.
                   </p>
                 </CardContent>
               </Card>
