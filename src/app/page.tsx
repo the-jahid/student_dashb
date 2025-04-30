@@ -10,7 +10,7 @@ export default function LandingPage() {
     <div className="flex min-h-screen flex-col">
       <Header />
 
-      <main className="bg-red-300" >
+      <main className="bg-red-300">
         {/* Hero Section */}
         <section className="w-full  py-8 sm:py-12 md:py-16 lg:py-24 xl:py-32  bg-gradient-to-b from-background to-muted ">
           <div className=" px-4 md:px-6">
@@ -27,16 +27,16 @@ export default function LandingPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <SignedIn>
-                  <Link href="/dashboard/chatbot" className="w-full sm:w-auto">
-                    <Button size="lg" className="w-full">
-                      Start Counseling
-                    </Button>
-                  </Link>
-                  <Link href="/dashboard/file" className="w-full sm:w-auto">
-                    <Button size="lg" variant="outline" className="w-full">
-                      Upload Program Data
-                    </Button>
-                  </Link>
+                    <Link href="/dashboard/chatbot" className="w-full sm:w-auto">
+                      <Button size="lg" className="w-full">
+                        Start Counseling
+                      </Button>
+                    </Link>
+                    <Link href="/dashboard/file" className="w-full sm:w-auto">
+                      <Button size="lg" variant="outline" className="w-full">
+                        Upload Program Data
+                      </Button>
+                    </Link>
                   </SignedIn>
                 </div>
               </div>
@@ -61,7 +61,7 @@ export default function LandingPage() {
                         </div>
                         <div className="flex items-start gap-2 justify-end">
                           <div className="bg-primary p-2 sm:p-3 rounded-lg text-xs sm:text-sm text-primary-foreground max-w-[80%]">
-                            I'm interested in studying computer science abroad.
+                            I&apos;m interested in studying computer science abroad.
                           </div>
                         </div>
                         <div className="flex items-start gap-2">
@@ -87,7 +87,9 @@ export default function LandingPage() {
           <div className=" px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">Powerful Features</h2>
+                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
+                  Powerful Features
+                </h2>
                 <p className="max-w-[900px] text-sm sm:text-base md:text-lg text-muted-foreground">
                   Everything you need to provide effective student counseling and track applications
                 </p>
@@ -114,7 +116,9 @@ export default function LandingPage() {
                 <CardHeader className="pb-2">
                   <Upload className="h-5 w-5 sm:h-6 sm:w-6 mb-2 text-primary" />
                   <CardTitle className="text-lg sm:text-xl">Bulk Information Upload</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">Easily upload program information with CSV files</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Easily upload program information with CSV files
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs sm:text-sm text-muted-foreground">
@@ -128,7 +132,9 @@ export default function LandingPage() {
                 <CardHeader className="pb-2">
                   <File className="h-5 w-5 sm:h-6 sm:w-6 mb-2 text-primary" />
                   <CardTitle className="text-lg sm:text-xl">Document Collection</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">Collect and store student documents securely</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Collect and store student documents securely
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs sm:text-sm text-muted-foreground">
@@ -142,7 +148,9 @@ export default function LandingPage() {
                 <CardHeader className="pb-2">
                   <Users className="h-5 w-5 sm:h-6 sm:w-6 mb-2 text-primary" />
                   <CardTitle className="text-lg sm:text-xl">Lead Tracking</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">Monitor student applications and follow-up opportunities</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Monitor student applications and follow-up opportunities
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs sm:text-sm text-muted-foreground">
@@ -156,7 +164,9 @@ export default function LandingPage() {
                 <CardHeader className="pb-2">
                   <BotIcon className="h-5 w-5 sm:h-6 sm:w-6 mb-2 text-primary" />
                   <CardTitle className="text-lg sm:text-xl">Conversational Counseling</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">Natural dialogue-based guidance for students</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Natural dialogue-based guidance for students
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs sm:text-sm text-muted-foreground">
@@ -170,7 +180,9 @@ export default function LandingPage() {
                 <CardHeader className="pb-2">
                   <Home className="h-5 w-5 sm:h-6 sm:w-6 mb-2 text-primary" />
                   <CardTitle className="text-lg sm:text-xl">Customizable Workflows</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">Tailor the counseling process to your institution</CardDescription>
+                  <CardDescription className="text-xs sm:text-sm">
+                    Tailor the counseling process to your institution
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-xs sm:text-sm text-muted-foreground">
@@ -187,7 +199,9 @@ export default function LandingPage() {
           <div className=" px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">How It Works</h2>
+                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
+                  How It Works
+                </h2>
                 <p className="max-w-[900px] text-sm sm:text-base md:text-lg text-muted-foreground">
                   Simple steps to transform your student counseling process
                 </p>
@@ -275,12 +289,18 @@ export default function LandingPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard/chatbot" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground">
+                  <Link
+                    href="/dashboard/chatbot"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-foreground"
+                  >
                     Chat
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard/file" className="text-xs sm:text-sm text-muted-foreground hover:text-foreground">
+                  <Link
+                    href="/dashboard/file"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-foreground"
+                  >
                     File Upload
                   </Link>
                 </li>
