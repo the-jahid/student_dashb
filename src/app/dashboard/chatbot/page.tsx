@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { v4 as uuidv4 } from "uuid"
+import Image from "next/image"
 import {
   Trash2,
   Plus,
@@ -54,6 +55,20 @@ interface ShareModalProps {
   isOpen: boolean
   onClose: () => void
   session: ChatSession | undefined
+}
+
+interface ApiResponse {
+  text: string
+}
+
+interface QueryData {
+  question: string
+  overrideConfig: {
+    systemMessage: string
+    maxIterations: number
+    enableDetailedStreaming: boolean
+    sessionId: string
+  }
 }
 
 const ShareModal = ({ isOpen, onClose, session }: ShareModalProps) => {
@@ -339,9 +354,11 @@ const AttachmentPreview = ({ attachment }: { attachment: FileAttachment }) => {
     <div className="mt-2 max-w-full">
       {isImage ? (
         <div className="relative">
-          <img
+          <Image
             src={attachment.fileUrl || "/placeholder.svg"}
             alt={attachment.fileName}
+            width={300}
+            height={200}
             className="max-w-full rounded-md max-h-60 object-contain"
           />
           <div className="absolute bottom-1 right-1 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-md">
@@ -405,6 +422,24 @@ const Chatbot = () => {
     }
   }, [])
 
+  // Load stored sessions function
+  const loadStoredSessions = () => {
+    const storedSessions = localStorage.getItem("chatSessions")
+    if (storedSessions) {
+      const parsedSessions = JSON.parse(storedSessions)
+      setSessions(parsedSessions)
+
+      // Set current session to the most recent one
+      if (parsedSessions.length > 0) {
+        setCurrentSessionId(parsedSessions[0].id)
+      } else {
+        createNewSession()
+      }
+    } else {
+      createNewSession()
+    }
+  }
+
   // Initialize or load sessions from localStorage
   useEffect(() => {
     try {
@@ -422,13 +457,15 @@ const Chatbot = () => {
           const sharedSession: ChatSession = {
             id: uuidv4(),
             name: parsedData.name || "Shared Conversation",
-            messages: parsedData.messages.map((msg: any) => ({
-              id: uuidv4(),
-              role: msg.role,
-              content: msg.content,
-              timestamp: Date.now(),
-              fileAttachment: msg.fileAttachment,
-            })),
+            messages: parsedData.messages.map(
+              (msg: { role: "user" | "assistant"; content: string; fileAttachment?: FileAttachment | null }) => ({
+                id: uuidv4(),
+                role: msg.role,
+                content: msg.content,
+                timestamp: Date.now(),
+                fileAttachment: msg.fileAttachment,
+              }),
+            ),
             createdAt: Date.now(),
           }
 
@@ -493,24 +530,7 @@ const Chatbot = () => {
       localStorage.removeItem("chatSessions")
       createNewSession()
     }
-  }, [])
-
-  const loadStoredSessions = () => {
-    const storedSessions = localStorage.getItem("chatSessions")
-    if (storedSessions) {
-      const parsedSessions = JSON.parse(storedSessions)
-      setSessions(parsedSessions)
-
-      // Set current session to the most recent one
-      if (parsedSessions.length > 0) {
-        setCurrentSessionId(parsedSessions[0].id)
-      } else {
-        createNewSession()
-      }
-    } else {
-      createNewSession()
-    }
-  }
+  }, [isSidebarOpen]) // Added isSidebarOpen as a dependency
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -564,8 +584,6 @@ const Chatbot = () => {
       createNewSession()
     }
   }
-
-
 
   const getCurrentSession = () => {
     return sessions.find((session) => session.id === currentSessionId)
@@ -633,7 +651,6 @@ const Chatbot = () => {
     setIsUploading(true)
     try {
       const result = await uploadcareClient.uploadFile(file)
-      
 
       console.log("File uploaded successfully:", result)
 
@@ -655,7 +672,7 @@ const Chatbot = () => {
     }
   }
 
-  async function query(data: any) {
+  async function query(data: QueryData): Promise<ApiResponse> {
     try {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
@@ -680,8 +697,8 @@ const Chatbot = () => {
 
       const result = await response.json()
       return result
-    } catch (error: any) {
-      if (error.name === "AbortError") {
+    } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
         throw new Error("Request timed out. The server took too long to respond.")
       }
       throw error
@@ -689,7 +706,7 @@ const Chatbot = () => {
   }
 
   // Mock response for testing when API is unavailable
-  const getMockResponse = (question: string) => {
+  const getMockResponse = (question: string): ApiResponse => {
     return {
       text: `This is a mock response to your question: "${question}". The actual API is currently unavailable, so I'm providing this fallback response for testing purposes.`,
     }
@@ -747,7 +764,7 @@ const Chatbot = () => {
       } else {
         throw new Error("Invalid response format from API")
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error querying the API:", error)
 
       // For demo purposes, use mock response instead of showing error
