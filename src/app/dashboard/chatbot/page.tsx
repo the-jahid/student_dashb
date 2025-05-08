@@ -680,7 +680,8 @@ export default function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="hidden lg:inline" >
+        <div className="flex items-center justify-between p-4 border-b border-gray-200   ">
           <div className="flex items-center gap-2 ml-14 lg:ml-0">
             <LanguageSwitcher languages={languages} />
           </div>
@@ -694,6 +695,7 @@ export default function ChatInterface() {
               <span className="hidden sm:inline">{t("delete")}</span>
             </button>
           </div>
+        </div>
         </div>
 
         {/* Chat Messages */}
@@ -858,7 +860,7 @@ export default function ChatInterface() {
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
-                placeholder={t("askMeAnything")}
+                placeholder={t("Ask me anything")}
                 className="w-full pl-12 pr-24 py-3  bg-white rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500"
                 disabled={isGenerating || isUploading}
               />
