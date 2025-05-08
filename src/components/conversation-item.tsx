@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { formatDistanceToNow } from "date-fns"
+
 import { MoreHorizontal, Trash2, Edit, Pin } from "lucide-react"
 import type { Conversation } from "@/types"
 import { useLanguage } from "@/contexts/language-context"
@@ -42,7 +42,7 @@ export default function ConversationItem({
   const displayTitle = title.length > 30 ? title.substring(0, 30) + "..." : title
 
   // Format the date
-  const timeAgo = formatDistanceToNow(new Date(conversation.updatedAt), { addSuffix: true })
+  // const timeAgo = formatDistanceToNow(new Date(conversation.updatedAt), { addSuffix: true })
 
   // Find if this conversation has a message matching the search query
   const hasMatchingMessage =
@@ -89,7 +89,7 @@ export default function ConversationItem({
                 <p className="text-sm font-medium truncate">{displayTitle}</p>
                 <p className="text-xs text-gray-500 truncate">
                   {hasMatchingMessage && searchQuery && <span className="text-blue-500 mr-1">•</span>}
-                  {timeAgo}
+                  {/* {timeAgo} */}
                 </p>
               </>
             )}

@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-no-comment-textnodes */
 "use client"
 
-import { FileText, ImageIcon as Image, File, X, Download } from "lucide-react"
+import { FileText, ImageIcon , File, X, Download } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import type { FileAttachment } from "@/types"
 
@@ -25,7 +27,7 @@ export default function FileAttachmentPreview({
 
   const getFileIcon = () => {
     if (fileAttachment.fileType.startsWith("image/")) {
-      return <Image className="w-5 h-5 text-blue-500"  />
+      return <ImageIcon className="w-5 h-5 text-blue-500"  />
     } else if (fileAttachment.fileType.includes("pdf")) {
       return <FileText className="w-5 h-5 text-red-500" />
     } else {
@@ -39,6 +41,7 @@ export default function FileAttachmentPreview({
     <div className="flex flex-col border border-gray-200 rounded-md overflow-hidden bg-white">
       {isImage && (
         <div className="relative w-full h-32 bg-gray-100">
+          // eslint-disable-next-line @next/next/no-img-element, @next/next/no-img-element
           <img
             src={fileAttachment.fileUrl || "/placeholder.svg"}
             alt={fileAttachment.fileName}

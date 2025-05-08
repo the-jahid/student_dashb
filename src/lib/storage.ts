@@ -35,8 +35,10 @@ export const loadConversations = (): Conversation[] => {
     }
 
     // Convert string dates back to Date objects
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return JSON.parse(storedConversations).map((conversation: any) => ({
       ...conversation,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       messages: conversation.messages.map((message: any) => ({
         ...message,
         timestamp: new Date(message.timestamp),

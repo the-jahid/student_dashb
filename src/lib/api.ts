@@ -46,4 +46,4 @@ export async function query(data: {
       }
     }
   }
-  
+} 
