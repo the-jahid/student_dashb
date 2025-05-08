@@ -4,7 +4,7 @@
 const DashboardPage = () => {
 
   return (
-    <div>
+    <div className="bg-red-500" >
       <h2>Hello world</h2>
     </div>
   )
