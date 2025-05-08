@@ -9,7 +9,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { SignedIn, UserButton } from "@clerk/nextjs"
 
-
 export default function DashboardLayout({
   children,
 }: {
@@ -44,7 +43,6 @@ export default function DashboardLayout({
       href: "/dashboard/file",
       icon: <File className="h-5 w-5 shrink-0" />,
     }
-    
   ]
 
   // Sidebar content component to avoid duplication
@@ -178,7 +176,7 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto ">{children}</main>
+      {children}
     </div>
   )
 }

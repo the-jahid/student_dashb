@@ -27,11 +27,11 @@ export  default function LandingPage() {
           <NavbarLogo />
           {/* <NavItems items={navItems} /> */}
           <div className="flex items-center gap-4">
-               {!isSignedIn && <NavbarButton variant="primary"><SignInButton forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
+               {!isSignedIn && <NavbarButton variant="primary"><SignInButton  forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
                {!isSignedIn && <NavbarButton variant="primary"><SignUpButton forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
             
         
-               {isSignedIn && <Link  href={'/dashboard/chatbot'}><NavbarButton variant="primary">Dashboard</NavbarButton></Link>}
+               {isSignedIn && <Link   href={'/dashboard/chatbot'}>Dashboard</Link>}
           </div>
         </NavBody>
 
@@ -55,7 +55,7 @@ export  default function LandingPage() {
                {!isSignedIn && <NavbarButton variant="primary"><SignUpButton forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
             
         
-               {isSignedIn && <Link  href={'/dashboard/chatbot'}><NavbarButton variant="primary">Dashboard</NavbarButton></Link>}
+               {isSignedIn && <Link  href={'/dashboard/chatbot'}>Dashboard</Link>}
               
             </div>
           </MobileNavMenu>
