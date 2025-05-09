@@ -31,7 +31,7 @@ export  default function LandingPage() {
                {!isSignedIn && <NavbarButton variant="primary"><SignUpButton forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
             
         
-               {isSignedIn && <Link   href={'/dashboard/chatbot'}>Dashboard</Link>}
+               {isSignedIn && <Link   href={'/dashboard/file'}>Dashboard</Link>}
           </div>
         </NavBody>
 

@@ -176,7 +176,9 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main content */}
-      {children}
+      <div className="w-full">
+          {children}
+      </div>
     </div>
   )
 }
