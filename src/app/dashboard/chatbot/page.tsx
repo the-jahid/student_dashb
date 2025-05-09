@@ -664,7 +664,7 @@ export default function ChatInterface() {
   const messages = activeConversation ? activeConversation.messages : []
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-[95vh] lg:h-screen bg-white">
       {/* Sidebar */}
       <Sidebar
         conversations={conversations}
@@ -869,7 +869,7 @@ export default function ChatInterface() {
                 type="submit"
                 className={`
         absolute right-2 top-1/2 transform -translate-y-1/2 /* Keep if positioning is needed */
-        px-6 py-2 /* Adjusted padding for a slightly larger feel like the image */
+        px-2 py-2 /* Adjusted padding for a slightly larger feel like the image */
         rounded-lg cursor-pointer /* For pill-shaped button */
         font-semibold /* Text looks a bit bolder in the image */
         text-white

@@ -1,10 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Search, Plus, ChevronDown, ChevronUp, Menu, X } from "lucide-react"
+import { Search, Plus, ChevronDown, ChevronUp,  X,  HistoryIcon } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import ConversationItem from "@/components/conversation-item"
 import type { Conversation } from "@/types"
+import Link from "next/link"
+
+import { UserButton } from "@clerk/nextjs"
 
 
 type SidebarProps = {
@@ -62,14 +65,14 @@ export default function Sidebar({
   }
 
   return (
-    <>
+    <div className="bg-white"  >
       {/* Mobile toggle button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+        className="md:hidden fixed top-1 right-2 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
         onClick={toggleSidebar}
         aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
       >
-        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        {isOpen ? <X className="w-5 h-5" /> : <HistoryIcon className="w-5 h-5   " />}
       </button>
 
       {/* Sidebar overlay for mobile */}
@@ -202,21 +205,25 @@ export default function Sidebar({
           )}
         </div>
 
-        {/* <div className="mt-auto p-4 border-t border-gray-200">
-          <div className="bg-blue-50 p-3 rounded-md mb-2">
-            <div className="flex items-center gap-2">
-              <div className="bg-blue-500 text-white rounded-md p-1">
-                <Plus className="w-4 h-4" />
-              </div>
-              <span className="text-sm font-medium">{t("enhanceExperience")}</span>
-            </div>
-            <p className="text-xs text-gray-600 mt-1">{t("getFullPotential")}</p>
+        <div className=" lg:hidden " >
+        <div className="flex  justify-center items-center p-4 border-t border-gray-200 mx-auto space-x-2  ">
+          
+          <Link href={'/'} className="w-full py-2 px-4 border border-gray-300 rounded-md text-sm font-medium">
+            {t("Home")}
+          </Link>
+          <Link href={'/dashboard/file'} className="w-full py-2 px-4 border border-gray-300 rounded-md text-sm font-medium">
+            {t("Upload")}
+          </Link>
+          <div className="mt-2" >
+            <UserButton />
           </div>
-          <button className="w-full py-2 border border-gray-300 rounded-md text-sm font-medium">
-            {t("upgradeNow")}
-          </button>
-        </div> */}
+        </div>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
+
+
+
+

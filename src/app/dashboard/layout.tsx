@@ -2,13 +2,14 @@
 
 import React, { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { BotIcon, File, Home, Menu, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { BotIcon, File, Home,  ChevronLeft, ChevronRight, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { SignedIn, UserButton } from "@clerk/nextjs"
 import { LanguageProvider } from "@/contexts/language-context"
+import Image from "next/image"
 
 export default function DashboardLayout({
   children,
@@ -147,18 +148,27 @@ export default function DashboardLayout({
   )
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full">
+    <div className="flex flex-col md:flex-row  w-full h-[100vh]">
       {/* Mobile header with menu button */}
-      <header className="h-16 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 md:hidden">
-        <Button variant="ghost" size="icon" onClick={() => setIsMobileOpen(true)}>
+      <header className="h-18 border-b border-gray-200 dark:border-gray-800 flex items-center  md:hidden ">
+        {/* <Button variant="ghost" size="icon" onClick={() => setIsMobileOpen(true)}>
           <Menu className="h-5 w-5" />
-        </Button>
-        <div className="ml-4 font-semibold">Dashboard</div>
+        </Button> */}
+         <div className="flex justify-center items-center ml-4 ">
+         <Image
+                src="https://assets.aceternity.com/logo-dark.png"
+                alt="logo"
+                width={30}
+                height={30}
+              
+              />
+        <div className=" font-semibold">Aria</div>
+         </div>
       </header>
 
       {/* Mobile sidebar overlay */}
       {isMobile && isMobileOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsMobileOpen(false)} />
+        <div className="fixed inset-0 bg-white/50 z-40" onClick={() => setIsMobileOpen(false)} />
       )}
 
       {/* Sidebar - desktop: side-docked, mobile: slide-in drawer */}
@@ -179,7 +189,7 @@ export default function DashboardLayout({
       {/* Main content */}
     
           <LanguageProvider>
-            <div className="w-full" >
+            <div className="w-full " >
                 {children}
             </div>
           </LanguageProvider>

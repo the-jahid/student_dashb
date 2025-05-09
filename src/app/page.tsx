@@ -23,11 +23,11 @@ export  default function LandingPage() {
           <NavbarLogo />
           {/* <NavItems items={navItems} /> */}
           <div className="flex items-center gap-4">
-               {!isSignedIn && <NavbarButton variant="primary"><SignInButton  forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
-               {!isSignedIn && <NavbarButton variant="primary"><SignUpButton forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
+               {!isSignedIn && <div className="px-2 py-1 border-2 rounded-lg hover:bg-gray-50 cursor-pointer  " ><SignInButton  forceRedirectUrl="/dashboard/chatbot" /></div>}
+               {!isSignedIn && <div className="px-2 py-1 border-2 rounded-lg hover:bg-gray-50 cursor-pointer " ><SignUpButton  forceRedirectUrl="/dashboard/chatbot" /></div>}
             
         
-               {isSignedIn && <Link   href={'/dashboard/chatbot'}>Dashboard</Link>}
+               {isSignedIn && <Link className="px-2 py-1 border-2 rounded-lg hover:bg-gray-50 cursor-pointer "   href={'/dashboard/chatbot'}>Dashboard</Link>}
           </div>
         </NavBody>
 
