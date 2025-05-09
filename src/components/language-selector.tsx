@@ -46,7 +46,7 @@ export default function LanguageSelector({ languages, onSelectLanguage }: Langua
           <p className="text-xs text-gray-500 mt-1">{t("languageDescription")}</p>
         </div>
 
-        <div className="mt-auto p-4 border-t border-gray-200">
+        {/* <div className="mt-auto p-4 border-t border-gray-200">
           <div className="bg-blue-50 p-3 rounded-md mb-2">
             <div className="flex items-center gap-2">
               <div className="bg-blue-500 text-white rounded-md p-1">
@@ -64,13 +64,13 @@ export default function LanguageSelector({ languages, onSelectLanguage }: Langua
           >
             {t("upgradeNow")}
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        {/* <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div className="flex items-center">
             <div className="relative inline-block">
               <button
@@ -114,7 +114,7 @@ export default function LanguageSelector({ languages, onSelectLanguage }: Langua
               <span>{t("delete")}</span>
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Language Selection Area */}
         <div className="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-6 flex flex-col items-center justify-center">
