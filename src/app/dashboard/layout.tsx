@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { SignedIn, UserButton } from "@clerk/nextjs"
+import { LanguageProvider } from "@/contexts/language-context"
 
 export default function DashboardLayout({
   children,
@@ -146,7 +147,7 @@ export default function DashboardLayout({
   )
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row h-screen w-full">
       {/* Mobile header with menu button */}
       <header className="h-16 border-b border-gray-200 dark:border-gray-800 flex items-center px-4 md:hidden">
         <Button variant="ghost" size="icon" onClick={() => setIsMobileOpen(true)}>
@@ -176,9 +177,13 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main content */}
-      <div className="w-full">
-          {children}
-      </div>
+    
+          <LanguageProvider>
+            <div className="w-full" >
+                {children}
+            </div>
+          </LanguageProvider>
+      
     </div>
   )
 }

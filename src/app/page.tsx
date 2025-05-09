@@ -1,7 +1,4 @@
-
-
 "use client";
-
 
 import { FeaturesSection } from "@/components/Home/features";
 import { HeroScroll } from "@/components/Home/HeroScroll";
@@ -9,7 +6,6 @@ import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, Nav
 import {  SignUpButton } from "@clerk/clerk-react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-
 import { useState } from "react";
 
 
@@ -31,7 +27,7 @@ export  default function LandingPage() {
                {!isSignedIn && <NavbarButton variant="primary"><SignUpButton forceRedirectUrl="/dashboard/chatbot" /></NavbarButton>}
             
         
-               {isSignedIn && <Link   href={'/dashboard/file'}>Dashboard</Link>}
+               {isSignedIn && <Link   href={'/dashboard/chatbot'}>Dashboard</Link>}
           </div>
         </NavBody>
 
