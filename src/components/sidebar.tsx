@@ -208,11 +208,11 @@ export default function Sidebar({
         <div className=" lg:hidden " >
         <div className="flex  justify-center items-center p-4 border-t border-gray-200 mx-auto space-x-2  ">
           
-          <Link href={'/'} className="w-full py-2 px-4 border border-gray-300 rounded-md text-sm font-medium">
-            {t("Home")}
+          <Link href={'/'} className="w-full py-1 px-2 border border-gray-300 rounded-md text-sm font-medium">
+            <p className="ml-4" >Home</p>
           </Link>
-          <Link href={'/dashboard/file'} className="w-full py-2 px-4 border border-gray-300 rounded-md text-sm font-medium">
-            {t("Upload")}
+          <Link href={'/dashboard/file'} className="w-full flex justify-center items-center py-1 px-2 border border-gray-300 rounded-md text-sm font-medium">
+            <p>Upload</p>
           </Link>
           <div className="mt-2" >
             <UserButton />
