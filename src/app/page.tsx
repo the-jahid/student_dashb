@@ -23,7 +23,7 @@ import {
 } from "@/lib/storage"
 import { useLanguage } from "@/contexts/language-context"
 import type { Message, Language, Conversation, FileAttachment } from "@/types"
-import { useUser } from "@clerk/nextjs"
+
 
 // Available languages
 const languages: Language[] = [
@@ -140,9 +140,9 @@ export default function ChatInterface() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(true)
   const [showShareDialog, setShowShareDialog] = useState(false)
   const [pendingFileAttachment, setPendingFileAttachment] = useState<FileAttachment | null>(null)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isUploading, setIsUploading] = useState(false)
-  const { user } = useUser()
+   
+  const [isUploading] = useState(false)
+ 
   // State for conversations
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeConversationId, setActiveConversationId] = useState<string | null>(null)
@@ -664,7 +664,7 @@ export default function ChatInterface() {
   const messages = activeConversation ? activeConversation.messages : []
 
   return (
-    <div className="flex h-[95vh] lg:h-screen bg-white">
+    <div className="flex h-[100vh] lg:h-screen bg-white">
       {/* Sidebar */}
       <Sidebar
         conversations={conversations}
@@ -680,11 +680,18 @@ export default function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="hidden lg:inline" >
+        <div className="" >
         <div className="flex items-center justify-between p-4 border-b border-gray-200   ">
-          <div className="flex items-center gap-2 ml-14 lg:ml-0">
-            <LanguageSwitcher languages={languages} />
-          </div>
+           <div className="flex justify-center items-center ml-4 ">
+                  <Image
+                         src="https://assets.aceternity.com/logo-dark.png"
+                         alt="logo"
+                         width={30}
+                         height={30}
+                       
+                       />
+                 <div className=" font-semibold">Aria</div>
+                  </div>
 
           <div className="flex items-center gap-2">
             <button
@@ -750,7 +757,7 @@ export default function ChatInterface() {
                       <div className="flex justify-end">
                         <div className="w-6 h-6 rounded-full overflow-hidden mt-1">
                           <Image
-                            src={user?.imageUrl || "/default-avatar.png"}
+                            src={ "https://stablediffusionweb.com/prompts/chatbot-logo-design"}
                             alt="User"
                             width={24}
                             height={24}

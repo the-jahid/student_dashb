@@ -68,7 +68,7 @@ export default function Sidebar({
     <div className="bg-white"  >
       {/* Mobile toggle button */}
       <button
-        className="md:hidden fixed top-1 right-2 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+        className="md:hidden fixed top-3 right-16 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
         onClick={toggleSidebar}
         aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
       >

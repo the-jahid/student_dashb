@@ -680,7 +680,7 @@ export default function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="hidden lg:inline" >
+        <div className="" >
         <div className="flex items-center justify-between p-4 border-b border-gray-200   ">
           <div className="flex items-center gap-2 ml-14 lg:ml-0">
             <LanguageSwitcher languages={languages} />
