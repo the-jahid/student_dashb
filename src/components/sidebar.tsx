@@ -5,9 +5,7 @@ import { Search, Plus, ChevronDown, ChevronUp,  X,  HistoryIcon } from "lucide-r
 import { useLanguage } from "@/contexts/language-context"
 import ConversationItem from "@/components/conversation-item"
 import type { Conversation } from "@/types"
-import Link from "next/link"
 
-import { UserButton } from "@clerk/nextjs"
 
 
 type SidebarProps = {
@@ -206,7 +204,7 @@ export default function Sidebar({
         </div>
 
         <div className=" lg:hidden " >
-        <div className="flex  justify-center items-center p-4 border-t border-gray-200 mx-auto space-x-2  ">
+        {/* <div className="flex  justify-center items-center p-4 border-t border-gray-200 mx-auto space-x-2  ">
           
           <Link href={'/'} className="w-full py-1 px-2 border border-gray-300 rounded-md text-sm font-medium">
             <p className="ml-4" >Home</p>
@@ -217,7 +215,7 @@ export default function Sidebar({
           <div className="mt-2" >
             <UserButton />
           </div>
-        </div>
+        </div> */}
         </div>
       </div>
     </div>
