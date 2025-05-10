@@ -6,6 +6,7 @@ import { Copy, RefreshCw, Trash2, SparklesIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { v4 as uuidv4 } from "uuid"
+import ReactMarkdown from "react-markdown"
 import LanguageSelector from "@/components/language-selector"
 import ShareDialog from "@/components/share-dialog"
 import FileUploadButton from "@/components/file-upload-button"
@@ -22,7 +23,6 @@ import {
 } from "@/lib/storage"
 import { useLanguage } from "@/contexts/language-context"
 import type { Message, Language, Conversation, FileAttachment } from "@/types"
-
 
 // Available languages
 const languages: Language[] = [
@@ -57,78 +57,141 @@ const welcomeMessages: Record<string, string> = {
 }
 
 // Template suggestions for university applications
+// const templateSuggestions: Record<string, { icon: string; text: string }[]> = {
+//   en: [
+//     { icon: "🎓", text: "Find top universities for my major" },
+//     { icon: "💰", text: "Scholarships and financial aid options" },
+//     { icon: "📝", text: "Help with my personal statement" },
+
+//   ],
+//   ar: [
+//     { icon: "🎓", text: "ابحث عن أفضل الجامعات لتخصصي" },
+//     { icon: "💰", text: "خيارات المنح الدراسية والمساعدات المالية" },
+//     { icon: "📝", text: "المساعدة في كتابة بياني الشخصي" },
+
+//   ],
+//   fr: [
+//     { icon: "🎓", text: "Trouver les meilleures universités pour ma spécialité" },
+//     { icon: "💰", text: "Options de bourses et d'aide financière" },
+//     { icon: "📝", text: "Aide pour ma lettre de motivation" },
+
+//   ],
+//   pt: [
+//     { icon: "🎓", text: "Encontrar as melhores universidades para minha especialidade" },
+//     { icon: "💰", text: "Opções de bolsas de estudo e ajuda financeira" },
+//     { icon: "📝", text: "Ajuda com minha carta de motivação" },
+
+//   ],
+//   nl: [
+//     { icon: "🎓", text: "Vind de beste universiteiten voor mijn studie" },
+//     { icon: "💰", text: "Beurzen en financiële hulpopties" },
+//     { icon: "📝", text: "Hulp bij mijn motivatiebrief" },
+
+//   ],
+//   es: [
+//     { icon: "🎓", text: "Encontrar las mejores universidades para mi carrera" },
+//     { icon: "💰", text: "Opciones de becas y ayuda financiera" },
+//     { icon: "📝", text: "Ayuda con mi carta de motivación" },
+
+//   ],
+//   it: [
+//     { icon: "🎓", text: "Trovare le migliori università per il mio corso di laurea" },
+//     { icon: "💰", text: "Opzioni di borse di studio e aiuti finanziari" },
+//     { icon: "📝", text: "Aiuto con la mia lettera motivazionale" },
+
+//   ],
+//   zh: [
+//     { icon: "🎓", text: "为我的专业寻找顶尖大学" },
+//     { icon: "💰", text: "奖学金和经济援助选项" },
+//     { icon: "📝", text: "帮助我写个人陈述" },
+
+//   ],
+//   ja: [
+//     { icon: "🎓", text: "私の専攻のためのトップ大学を探す" },
+//     { icon: "💰", text: "奨学金と経済的支援のオプション" },
+//     { icon: "📝", text: "志望動機書の作成サポート" },
+
+//   ],
+//   hi: [
+//     { icon: "🎓", text: "मेरे विषय के लिए शीर्ष विश्वविद्यालय खोजें" },
+//     { icon: "💰", text: "छात्रवृत्ति और वित्तीय सहायता विकल्प" },
+//     { icon: "📝", text: "मेरे व्यक्तिगत विवरण में मदद" },
+
+//   ],
+//   ko: [
+//     { icon: "🎓", text: "내 전공을 위한 최고의 대학 찾기" },
+//     { icon: "💰", text: "장학금 및 재정 지원 옵션" },
+//     { icon: "📝", text: "자기소개서 작성 도움" },
+
+//   ],
+//   fa: [
+//     { icon: "🎓", text: "یافتن بهترین دانشگاه‌ها برای رشته من" },
+//     { icon: "💰", text: "گزینه‌های بورسیه و کمک مالی" },
+//     { icon: "📝", text: "کمک با نامه انگیزه‌نامه من" },
+
+//   ],
+// }
+// Template suggestions for university applications
 const templateSuggestions: Record<string, { icon: string; text: string }[]> = {
   en: [
-    { icon: "🎓", text: "Find top universities for my major" },
-    { icon: "💰", text: "Scholarships and financial aid options" },
-    { icon: "📝", text: "Help with my personal statement" },
-    { icon: "📋", text: "Application requirements for universities" },
+    { icon: "🏫", text: "English programs" },
+    { icon: "🎯", text: "Bachelors programs" },
+    { icon: "🔍", text: "Masters programs" },
   ],
   ar: [
-    { icon: "🎓", text: "ابحث عن أفضل الجامعات لتخصصي" },
-    { icon: "💰", text: "خيارات المنح الدراسية والمساعدات المالية" },
-    { icon: "📝", text: "المساعدة في كتابة بياني الشخصي" },
-    { icon: "📋", text: "متطلبات التقديم للجامعات" },
+    { icon: "🏫", text: "برامج باللغة الإنجليزية" },
+    { icon: "🎯", text: "برامج البكالوريوس" },
+    { icon: "🔍", text: "برامج الماجستير" },
   ],
   fr: [
-    { icon: "🎓", text: "Trouver les meilleures universités pour ma spécialité" },
-    { icon: "💰", text: "Options de bourses et d'aide financière" },
-    { icon: "📝", text: "Aide pour ma lettre de motivation" },
-    { icon: "📋", text: "Conditions de candidature pour les universités" },
+    { icon: "🏫", text: "Programmes en anglais" },
+    { icon: "🎯", text: "Programmes de licence" },
+    { icon: "🔍", text: "Programmes de master" },
   ],
   pt: [
-    { icon: "🎓", text: "Encontrar as melhores universidades para minha especialidade" },
-    { icon: "💰", text: "Opções de bolsas de estudo e ajuda financeira" },
-    { icon: "📝", text: "Ajuda com minha carta de motivação" },
-    { icon: "📋", text: "Requisitos de inscrição para universidades" },
+    { icon: "🏫", text: "Programas em inglês" },
+    { icon: "🎯", text: "Programas de bacharelado" },
+    { icon: "🔍", text: "Programas de mestrado" },
   ],
   nl: [
-    { icon: "🎓", text: "Vind de beste universiteiten voor mijn studie" },
-    { icon: "💰", text: "Beurzen en financiële hulpopties" },
-    { icon: "📝", text: "Hulp bij mijn motivatiebrief" },
-    { icon: "📋", text: "Aanmeldingsvereisten voor universiteiten" },
+    { icon: "🏫", text: "Engelstalige programma's" },
+    { icon: "🎯", text: "Bachelor programma's" },
+    { icon: "🔍", text: "Master programma's" },
   ],
   es: [
-    { icon: "🎓", text: "Encontrar las mejores universidades para mi carrera" },
-    { icon: "💰", text: "Opciones de becas y ayuda financiera" },
-    { icon: "📝", text: "Ayuda con mi carta de motivación" },
-    { icon: "📋", text: "Requisitos de solicitud para universidades" },
+    { icon: "🏫", text: "Programas en inglés" },
+    { icon: "🎯", text: "Programas de licenciatura" },
+    { icon: "🔍", text: "Programas de maestría" },
   ],
   it: [
-    { icon: "🎓", text: "Trovare le migliori università per il mio corso di laurea" },
-    { icon: "💰", text: "Opzioni di borse di studio e aiuti finanziari" },
-    { icon: "📝", text: "Aiuto con la mia lettera motivazionale" },
-    { icon: "📋", text: "Requisiti di domanda per le università" },
+    { icon: "🏫", text: "Programmi in inglese" },
+    { icon: "🎯", text: "Programmi di laurea triennale" },
+    { icon: "🔍", text: "Programmi di laurea magistrale" },
   ],
   zh: [
-    { icon: "🎓", text: "为我的专业寻找顶尖大学" },
-    { icon: "💰", text: "奖学金和经济援助选项" },
-    { icon: "📝", text: "帮助我写个人陈述" },
-    { icon: "📋", text: "大学申请要求" },
+    { icon: "🏫", text: "英语课程" },
+    { icon: "🎯", text: "本科课程" },
+    { icon: "🔍", text: "硕士课程" },
   ],
   ja: [
-    { icon: "🎓", text: "私の専攻のためのトップ大学を探す" },
-    { icon: "💰", text: "奨学金と経済的支援のオプション" },
-    { icon: "📝", text: "志望動機書の作成サポート" },
-    { icon: "📋", text: "大学の出願要件" },
+    { icon: "🏫", text: "英語プログラム" },
+    { icon: "🎯", text: "学士課程" },
+    { icon: "🔍", text: "修士課程" },
   ],
   hi: [
-    { icon: "🎓", text: "मेरे विषय के लिए शीर्ष विश्वविद्यालय खोजें" },
-    { icon: "💰", text: "छात्रवृत्ति और वित्तीय सहायता विकल्प" },
-    { icon: "📝", text: "मेरे व्यक्तिगत विवरण में मदद" },
-    { icon: "📋", text: "विश्वविद्यालयों के लिए आवेदन आवश्यकताएँ" },
+    { icon: "🏫", text: "अंग्रेजी कार्यक्रम" },
+    { icon: "🎯", text: "स्नातक कार्यक्रम" },
+    { icon: "🔍", text: "मास्टर्स कार्यक्रम" },
   ],
   ko: [
-    { icon: "🎓", text: "내 전공을 위한 최고의 대학 찾기" },
-    { icon: "💰", text: "장학금 및 재정 지원 옵션" },
-    { icon: "📝", text: "자기소개서 작성 도움" },
-    { icon: "📋", text: "대학 지원 요건" },
+    { icon: "🏫", text: "영어 프로그램" },
+    { icon: "🎯", text: "학사 프로그램" },
+    { icon: "🔍", text: "석사 프로그램" },
   ],
   fa: [
-    { icon: "🎓", text: "یافتن بهترین دانشگاه‌ها برای رشته من" },
-    { icon: "💰", text: "گزینه‌های بورسیه و کمک مالی" },
-    { icon: "📝", text: "کمک با نامه انگیزه‌نامه من" },
-    { icon: "📋", text: "الزامات درخواست برای دانشگاه‌ها" },
+    { icon: "🏫", text: "برنامه‌های انگلیسی" },
+    { icon: "🎯", text: "برنامه‌های کارشناسی" },
+    { icon: "🔍", text: "برنامه‌های کارشناسی ارشد" },
   ],
 }
 
@@ -139,9 +202,9 @@ export default function ChatInterface() {
   const [showLanguageSelector, setShowLanguageSelector] = useState(true)
   const [showShareDialog, setShowShareDialog] = useState(false)
   const [pendingFileAttachment, setPendingFileAttachment] = useState<FileAttachment | null>(null)
-   
+
   const [isUploading] = useState(false)
- 
+
   // State for conversations
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeConversationId, setActiveConversationId] = useState<string | null>(null)
@@ -679,29 +742,23 @@ export default function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="" >
-        <div className="flex items-center justify-between p-4 border-b border-gray-200   ">
-           <div className="flex justify-center items-center ml-4 ">
-                  <Image
-                         src="https://assets.aceternity.com/logo-dark.png"
-                         alt="logo"
-                         width={30}
-                         height={30}
-                       
-                       />
-                 <div className=" font-semibold">Aria</div>
-                  </div>
+        <div className="">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200   ">
+            <div className="flex justify-center items-center ml-4 ">
+              <Image src="https://assets.aceternity.com/logo-dark.png" alt="logo" width={30} height={30} />
+              <div className=" font-semibold">Aria</div>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              className="flex items-center gap-1 px-3 py-1 text-sm border border-red-200 text-red-500 rounded-md"
-              onClick={() => activeConversationId && deleteConversation(activeConversationId)}
-            >
-              <Trash2 className="w-4 h-4" />
-              <span className="hidden sm:inline">{t("delete")}</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                className="flex items-center gap-1 px-3 py-1 text-sm border border-red-200 text-red-500 rounded-md"
+                onClick={() => activeConversationId && deleteConversation(activeConversationId)}
+              >
+                <Trash2 className="w-4 h-4" />
+                <span className="hidden sm:inline">{t("delete")}</span>
+              </button>
+            </div>
           </div>
-        </div>
         </div>
 
         {/* Chat Messages */}
@@ -756,7 +813,7 @@ export default function ChatInterface() {
                       <div className="flex justify-end">
                         <div className="w-6 h-6 rounded-full overflow-hidden mt-1">
                           <Image
-                            src={ "https://stablediffusionweb.com/prompts/chatbot-logo-design"}
+                            src={"/A12BAD7D-904C-4069-8857-7EB5268405F1.png" }
                             alt="User"
                             width={24}
                             height={24}
@@ -782,7 +839,9 @@ export default function ChatInterface() {
                     </div>
                     <div className="flex-1 ">
                       <div className="bg-white p-4 rounded-lg shadow-sm">
-                        <p className="whitespace-pre-line">{message.content}</p>
+                        <ReactMarkdown>
+                          {message.content}
+                        </ReactMarkdown>
                       </div>
                       <div className="flex gap-2 mt-2 lg:bg-white p-2 lg:w-2/12 rounded-lg justify-center ">
                         <button className="flex items-center gap-1 text-xs text-gray-500 cursor-pointer">
