@@ -663,7 +663,7 @@ export default function ChatInterface() {
   const messages = activeConversation ? activeConversation.messages : []
 
   return (
-    <div className="flex h-[100vh] lg:h-screen bg-white">
+    <div className="flex h-[95vh] lg:h-screen bg-white">
       {/* Sidebar */}
       <Sidebar
         conversations={conversations}
