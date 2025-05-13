@@ -975,7 +975,7 @@ export default function ChatInterface() {
                   </>
                 ) : (
                   <>
-                    <span>Generate</span>
+                    <span>Send</span>
                     <SparklesIcon className="w-4 h-4" />
                   </>
                 )}
